@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <title>VoxelCraft Web</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="crosshair" aria-hidden="true">+</div>
+
+    <div id="hud" class="hidden">
+      <div id="topbar">
+        <span id="biomeLabel">VoxelCraft</span>
+        <span id="fpsLabel">0 FPS</span>
+        <span id="posLabel">X 0 Y 0 Z 0</span>
+      </div>
+      <div id="helpText">Desktop: WASD bergerak • Mouse lihat • Klik kiri hancurkan • Klik kanan letak • 1-8 pilih block • ESC pause</div>
+      <div id="hotbar" aria-label="Hotbar"></div>
+    </div>
+
+    <div id="mobileControls" class="hidden">
+      <div class="pad left-pad">
+        <button class="touch-btn small ghost" data-key="KeyW">▲</button>
+        <div class="row">
+          <button class="touch-btn small ghost" data-key="KeyA">◀</button>
+          <button class="touch-btn small ghost" data-key="KeyS">▼</button>
+          <button class="touch-btn small ghost" data-key="KeyD">▶</button>
+        </div>
+      </div>
+      <div class="pad right-pad">
+        <button class="touch-btn action" id="jumpBtn">JUMP</button>
+        <button class="touch-btn action" id="breakBtn">BREAK</button>
+        <button class="touch-btn action" id="placeBtn">PLACE</button>
+        <button class="touch-btn action" id="pauseBtn">MENU</button>
+      </div>
+    </div>
+
+    <section id="menu" class="panel show">
+      <div class="card main-card">
+        <p class="eyebrow">original voxel sandbox</p>
+        <h1>VoxelCraft Web</h1>
+        <p class="subtitle">Game block 3D web dengan terrain, hotbar, mobile controls, build & break block. Bukan Minecraft resmi, karena tentu saja dunia butuh disclaimer untuk rumput digital.</p>
+        <div class="menu-actions">
+          <button id="startBtn" class="primary">Mulai Game</button>
+          <button id="settingsBtn">Pengaturan</button>
+          <button id="resetBtn" class="danger">Reset Dunia</button>
+        </div>
+        <div class="credits">
+          <strong>Texture:</strong> beberapa texture dari Faithful Resource Pack 32x.<br />
+          Kredit: Faithful Resource Pack • https://faithfulpack.net/ • lisensi disertakan di folder <code>licenses/</code>.
+        </div>
+      </div>
+    </section>
+
+    <section id="settings" class="panel hidden">
+      <div class="card settings-card">
+        <h2>Pengaturan</h2>
+        <label>
+          Sensitivitas Kamera
+          <input id="sensSlider" type="range" min="0.25" max="2.5" step="0.05" value="1" />
+          <span id="sensValue">1.00x</span>
+        </label>
+        <label>
+          FOV
+          <input id="fovSlider" type="range" min="55" max="95" step="1" value="75" />
+          <span id="fovValue">75°</span>
+        </label>
+        <label>
+          Jarak render
+          <input id="distanceSlider" type="range" min="20" max="90" step="5" value="65" />
+          <span id="distanceValue">65</span>
+        </label>
+        <label class="checkbox-row">
+          <input id="autosaveCheck" type="checkbox" checked />
+          Auto-save perubahan block
+        </label>
+        <label class="checkbox-row">
+          <input id="fancySkyCheck" type="checkbox" checked />
+          Langit bergerak + kabut lembut
+        </label>
+        <div class="menu-actions">
+          <button id="backBtn" class="primary">Kembali</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="src/game.js"></script>
+</body>
+</html>
